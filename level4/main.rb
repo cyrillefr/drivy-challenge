@@ -6,4 +6,4 @@ require_relative 'rules_level_four.rb'
 
 level4 = Drivy::RentalServiceWithRules.new File.absolute_path(__dir__), Drivy::RulesLevelFour
 
-puts level4.formatted_rentals
+puts level4.pretty_json_rentals

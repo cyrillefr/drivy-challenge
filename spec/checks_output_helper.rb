@@ -21,11 +21,7 @@ def checks_output(level, mod)
 end
 
 def check_method(level)
-  arr = { 'level1' => :formatted_rentals,
-          'level2' => :formatted_rentals,
-          'level3' => :formatted_rentals,
-          'level4' => :formatted_rentals,
-          'level5' => :formatted_rentals,
-          'level6' => :formatted_deltas }
-  arr.fetch level
+  methods = { 'level6' => :json_deltas }
+  methods.default = :json_rentals
+  methods[level]
 end

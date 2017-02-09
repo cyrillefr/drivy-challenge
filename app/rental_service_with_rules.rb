@@ -8,12 +8,38 @@ module Drivy
       @service_rental = RentalService.new(service_data, rules_level)
     end
 
-    def formatted_rentals
-      @service_rental.retrieve_formatted_rentals { @service_rental.generate_json_rentals }
+    def fetch_rentals
+      rentals = { 'rentals' => @service_rental.rentals }
+      if block_given?
+        yield rentals
+      else
+        rentals
+      end
     end
 
-    def formatted_deltas
-      @service_rental.retrieve_formatted_deltas { @service_rental.generate_json_deltas }
+    def fetch_deltas
+      deltas = { 'rental_modifications' => @service_rental.deltas }
+      if block_given?
+        yield deltas
+      else
+        deltas
+      end
+    end
+
+    def pretty_json_rentals
+      fetch_rentals { |rentals| JSON.pretty_generate rentals }
+    end
+
+    def json_rentals
+      fetch_rentals { |rentals| JSON.generate rentals }
+    end
+
+    def pretty_json_deltas
+      fetch_deltas { |deltas| JSON.pretty_generate deltas }
+    end
+
+    def json_deltas
+      fetch_deltas { |deltas| JSON.generate deltas }
     end
   end
 end

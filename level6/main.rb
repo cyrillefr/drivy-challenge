@@ -8,4 +8,4 @@ require_relative 'rules_level_six.rb'
 
 level6 = Drivy::RentalServiceWithRules.new File.absolute_path(__dir__), Drivy::RulesLevelSix
 
-puts level6.formatted_deltas
+puts level6.pretty_json_deltas

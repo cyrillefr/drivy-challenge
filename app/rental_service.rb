@@ -20,7 +20,7 @@ module Drivy
     end
 
     def compute_rentals
-      # for each input rental, get the corresponding car and associated prices
+      # for each input rental, get the corresponding rental object
       @rental_data.rentals_made.map do |rental_made|
         rental = get_rental_object(rental_made)
         rental.compute_rental_with_rules
@@ -52,32 +52,14 @@ module Drivy
       @rental_data.rentals_made.find { |rental_made| rental_made.id == id }
     end
 
-    def retrieve_rentals
+    def rentals
       populate_data_rentals
       compute_rentals
     end
 
-    def retrieve_deltas
+    def deltas
       populate_data_rentals
       compute_deltas
-    end
-
-    def retrieve_formatted_rentals
-      retrieve_rentals
-      yield if block_given?
-    end
-
-    def retrieve_formatted_deltas
-      retrieve_deltas
-      yield if block_given?
-    end
-
-    def generate_json_rentals
-      JSON.generate('rentals' => compute_rentals)
-    end
-
-    def generate_json_deltas
-      JSON.generate('rental_modifications' => compute_deltas)
     end
   end
 end
