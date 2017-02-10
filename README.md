@@ -1,16 +1,23 @@
 #### Assumptions:
+
 ruby 2.3.3
+
 bundler installed
 
 
 #### Libs required:
 - to run:
+
   none
 
 - to test:
+
   rake
+  
   rspec
+  
   simplecov
+  
 
 All will be installed via Gemfile
 
